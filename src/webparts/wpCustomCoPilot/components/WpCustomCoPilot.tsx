@@ -6,12 +6,11 @@ import * as ReactWebChat from 'botframework-webchat';
 import MSALWrapper from '../SSOAuth/MSALWrapper';
 import { Dispatch } from 'redux';
 import { Spinner } from '@fluentui/react';
-import { escape } from '@microsoft/sp-lodash-subset';
 
 
 const CoPilotCustomWP: React.FC<IWpCustomCoPilotProps> = (props) => {
 
-  const { botURL, clientID, authority, customScope, userDisplayName, botAvatarImage, botAvatarInitials, userEmail, welcomeMessage } = props;
+  const { botURL, clientID, authority, customScope, userDisplayName, botAvatarImage, botAvatarInitials, userEmail } = props;
 
   // Check for required properties
   if (!botURL || !clientID || !authority || !customScope) {
@@ -166,6 +165,8 @@ const CoPilotCustomWP: React.FC<IWpCustomCoPilotProps> = (props) => {
             hideUploadButton: true,
             rootHeight: '100%',
             rootWidth: '100%',
+            botAvatarBackgroundColor: '#fff',
+            userAvatarBackgroundColor: '#fff',
             ...avatarOptions
         }
     
@@ -203,7 +204,9 @@ const CoPilotCustomWP: React.FC<IWpCustomCoPilotProps> = (props) => {
   return (
     <section className={`${styles.wpCustomCoPilot}`}>
       <div>
-      <h2>Welcome {escape(userDisplayName)}, {welcomeMessage}:</h2>
+        <div style={{ background: '#009FDB', color: '#fff', padding: '1rem', borderRadius: '4px 4px 0 0', fontWeight: 'bold', fontSize: '1.3rem', letterSpacing: '0.5px' }}>
+          FiTo AI (Powered by Ask AT&T)
+        </div>
         <div className={styles.chatContainer} id="chatContainer">
           <div ref={webChatRef} role="main" className={styles.webChat}></div>
           <div ref={loadingSpinnerRef}><Spinner label="Loading..." style={{ paddingTop: "1rem", paddingBottom: "1rem" }} /></div>
