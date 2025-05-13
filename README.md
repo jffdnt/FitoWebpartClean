@@ -1,4 +1,4 @@
-# Copilot Chat Bubble - jd123x v1
+# Copilot Chat Bubble - jd123x v2
 
 ## Summary
 
