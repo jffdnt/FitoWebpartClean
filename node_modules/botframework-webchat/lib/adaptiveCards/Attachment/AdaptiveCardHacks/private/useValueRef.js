@@ -1,0 +1,15 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = useValueRef;
+
+var _react = require("react");
+
+function useValueRef(value) {
+  var ref = (0, _react.useRef)(value);
+  ref.current = value;
+  return ref;
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJ1c2VWYWx1ZVJlZiIsInZhbHVlIiwicmVmIiwidXNlUmVmIiwiY3VycmVudCJdLCJzb3VyY2VSb290IjoiYnVuZGxlOi8vLyIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vc3JjL2FkYXB0aXZlQ2FyZHMvQXR0YWNobWVudC9BZGFwdGl2ZUNhcmRIYWNrcy9wcml2YXRlL3VzZVZhbHVlUmVmLnRzIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IHVzZVJlZiB9IGZyb20gJ3JlYWN0JztcblxuaW1wb3J0IHR5cGUgeyBSZWZPYmplY3QgfSBmcm9tICdyZWFjdCc7XG5cbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIHVzZVZhbHVlUmVmPFQ+KHZhbHVlOiBUKTogUmVmT2JqZWN0PFQ+IHtcbiAgY29uc3QgcmVmID0gdXNlUmVmPFQ+KHZhbHVlKTtcblxuICByZWYuY3VycmVudCA9IHZhbHVlO1xuXG4gIHJldHVybiByZWY7XG59XG4iXSwibWFwcGluZ3MiOiI7Ozs7Ozs7QUFBQTs7QUFJZSxTQUFTQSxXQUFULENBQXdCQyxLQUF4QixFQUFnRDtFQUM3RCxJQUFNQyxHQUFHLEdBQUcsSUFBQUMsYUFBQSxFQUFVRixLQUFWLENBQVo7RUFFQUMsR0FBRyxDQUFDRSxPQUFKLEdBQWNILEtBQWQ7RUFFQSxPQUFPQyxHQUFQO0FBQ0QifQ==

@@ -1,0 +1,18 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = usePrevious;
+
+var _react = require("react");
+
+// TODO: [P0] #4133 Don't copy.
+function usePrevious(value) {
+  var ref = (0, _react.useRef)();
+  (0, _react.useEffect)(function () {
+    ref.current = value;
+  });
+  return ref.current;
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJ1c2VQcmV2aW91cyIsInZhbHVlIiwicmVmIiwidXNlUmVmIiwidXNlRWZmZWN0IiwiY3VycmVudCJdLCJzb3VyY2VSb290IjoiYnVuZGxlOi8vLyIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vc3JjL2FkYXB0aXZlQ2FyZHMvQXR0YWNobWVudC9BZGFwdGl2ZUNhcmRIYWNrcy9wcml2YXRlL3VzZVByZXZpb3VzLnRzIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIFRPRE86IFtQMF0gIzQxMzMgRG9uJ3QgY29weS5cbmltcG9ydCB7IHVzZUVmZmVjdCwgdXNlUmVmIH0gZnJvbSAncmVhY3QnO1xuXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbiB1c2VQcmV2aW91czxUPih2YWx1ZTogVCk6IFQgfCB1bmRlZmluZWQge1xuICBjb25zdCByZWYgPSB1c2VSZWY8VD4oKTtcblxuICB1c2VFZmZlY3QoKCkgPT4ge1xuICAgIHJlZi5jdXJyZW50ID0gdmFsdWU7XG4gIH0pO1xuXG4gIHJldHVybiByZWYuY3VycmVudDtcbn1cbiJdLCJtYXBwaW5ncyI6Ijs7Ozs7OztBQUNBOztBQURBO0FBR2UsU0FBU0EsV0FBVCxDQUF3QkMsS0FBeEIsRUFBaUQ7RUFDOUQsSUFBTUMsR0FBRyxHQUFHLElBQUFDLGFBQUEsR0FBWjtFQUVBLElBQUFDLGdCQUFBLEVBQVUsWUFBTTtJQUNkRixHQUFHLENBQUNHLE9BQUosR0FBY0osS0FBZDtFQUNELENBRkQ7RUFJQSxPQUFPQyxHQUFHLENBQUNHLE9BQVg7QUFDRCJ9

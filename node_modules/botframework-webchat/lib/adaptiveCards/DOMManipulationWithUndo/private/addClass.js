@@ -1,0 +1,19 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.addClass = addClass;
+
+/**
+ * Adds a class to the `HTMLElement`. Returns `true` if the class is added, otherwise, `undefined`.
+ */
+function addClass(element, className) {
+  var classList = element.classList;
+
+  if (!classList.contains(className)) {
+    classList.add(className);
+    return true;
+  }
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJhZGRDbGFzcyIsImVsZW1lbnQiLCJjbGFzc05hbWUiLCJjbGFzc0xpc3QiLCJjb250YWlucyIsImFkZCJdLCJzb3VyY2VSb290IjoiYnVuZGxlOi8vLyIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vc3JjL2FkYXB0aXZlQ2FyZHMvRE9NTWFuaXB1bGF0aW9uV2l0aFVuZG8vcHJpdmF0ZS9hZGRDbGFzcy50c3giXSwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBBZGRzIGEgY2xhc3MgdG8gdGhlIGBIVE1MRWxlbWVudGAuIFJldHVybnMgYHRydWVgIGlmIHRoZSBjbGFzcyBpcyBhZGRlZCwgb3RoZXJ3aXNlLCBgdW5kZWZpbmVkYC5cbiAqL1xuXG5leHBvcnQgZnVuY3Rpb24gYWRkQ2xhc3MoZWxlbWVudDogSFRNTEVsZW1lbnQsIGNsYXNzTmFtZTogc3RyaW5nKTogdHJ1ZSB8IHVuZGVmaW5lZCB7XG4gIGNvbnN0IHsgY2xhc3NMaXN0IH0gPSBlbGVtZW50O1xuXG4gIGlmICghY2xhc3NMaXN0LmNvbnRhaW5zKGNsYXNzTmFtZSkpIHtcbiAgICBjbGFzc0xpc3QuYWRkKGNsYXNzTmFtZSk7XG5cbiAgICByZXR1cm4gdHJ1ZTtcbiAgfVxufVxuIl0sIm1hcHBpbmdzIjoiOzs7Ozs7O0FBQUE7QUFDQTtBQUNBO0FBRU8sU0FBU0EsUUFBVCxDQUFrQkMsT0FBbEIsRUFBd0NDLFNBQXhDLEVBQTZFO0VBQ2xGLElBQVFDLFNBQVIsR0FBc0JGLE9BQXRCLENBQVFFLFNBQVI7O0VBRUEsSUFBSSxDQUFDQSxTQUFTLENBQUNDLFFBQVYsQ0FBbUJGLFNBQW5CLENBQUwsRUFBb0M7SUFDbENDLFNBQVMsQ0FBQ0UsR0FBVixDQUFjSCxTQUFkO0lBRUEsT0FBTyxJQUFQO0VBQ0Q7QUFDRiJ9

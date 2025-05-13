@@ -1,0 +1,23 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = useAdaptiveCardsContext;
+
+var _react = require("react");
+
+var _AdaptiveCardsContext = _interopRequireDefault(require("../../AdaptiveCardsContext"));
+
+function useAdaptiveCardsContext() {
+  var context = (0, _react.useContext)(_AdaptiveCardsContext.default);
+
+  if (!context) {
+    throw new Error('This hook can only be used on component that is decendants of <ComposerWithAdaptiveCards>');
+  }
+
+  return context;
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJ1c2VBZGFwdGl2ZUNhcmRzQ29udGV4dCIsImNvbnRleHQiLCJ1c2VDb250ZXh0IiwiQWRhcHRpdmVDYXJkc0NvbnRleHQiLCJFcnJvciJdLCJzb3VyY2VSb290IjoiYnVuZGxlOi8vLyIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vc3JjL2FkYXB0aXZlQ2FyZHMvaG9va3MvaW50ZXJuYWwvdXNlQWRhcHRpdmVDYXJkc0NvbnRleHQudHMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgdXNlQ29udGV4dCB9IGZyb20gJ3JlYWN0JztcblxuaW1wb3J0IEFkYXB0aXZlQ2FyZHNDb250ZXh0IGZyb20gJy4uLy4uL0FkYXB0aXZlQ2FyZHNDb250ZXh0JztcblxuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gdXNlQWRhcHRpdmVDYXJkc0NvbnRleHQoKTogQWRhcHRpdmVDYXJkc0NvbnRleHQge1xuICBjb25zdCBjb250ZXh0ID0gdXNlQ29udGV4dChBZGFwdGl2ZUNhcmRzQ29udGV4dCk7XG5cbiAgaWYgKCFjb250ZXh0KSB7XG4gICAgdGhyb3cgbmV3IEVycm9yKCdUaGlzIGhvb2sgY2FuIG9ubHkgYmUgdXNlZCBvbiBjb21wb25lbnQgdGhhdCBpcyBkZWNlbmRhbnRzIG9mIDxDb21wb3NlcldpdGhBZGFwdGl2ZUNhcmRzPicpO1xuICB9XG5cbiAgcmV0dXJuIGNvbnRleHQ7XG59XG4iXSwibWFwcGluZ3MiOiI7Ozs7Ozs7OztBQUFBOztBQUVBOztBQUVlLFNBQVNBLHVCQUFULEdBQXlEO0VBQ3RFLElBQU1DLE9BQU8sR0FBRyxJQUFBQyxpQkFBQSxFQUFXQyw2QkFBWCxDQUFoQjs7RUFFQSxJQUFJLENBQUNGLE9BQUwsRUFBYztJQUNaLE1BQU0sSUFBSUcsS0FBSixDQUFVLDJGQUFWLENBQU47RUFDRDs7RUFFRCxPQUFPSCxPQUFQO0FBQ0QifQ==

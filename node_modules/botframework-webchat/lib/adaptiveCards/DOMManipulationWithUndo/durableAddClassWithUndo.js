@@ -1,0 +1,38 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = durableAddClassWithUndo;
+
+var _addClass = require("./private/addClass");
+
+var _noOp = _interopRequireDefault(require("./private/noOp"));
+
+/**
+ * Adds a class to the `HTMLElement` and re-add on mutations.
+ *
+ * @returns {function} A function, when called, will restore to previous state.
+ */
+function durableAddClassWithUndo(element, className) {
+  if (element) {
+    (0, _addClass.addClass)(element, className); // After we add the class, keep observing the element to make sure the class is not removed.
+
+    var observer = new MutationObserver(function () {
+      return (0, _addClass.addClass)(element, className);
+    });
+    observer.observe(element, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+    return function () {
+      element.classList.remove(className);
+      observer.disconnect();
+    };
+  }
+
+  return _noOp.default;
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJkdXJhYmxlQWRkQ2xhc3NXaXRoVW5kbyIsImVsZW1lbnQiLCJjbGFzc05hbWUiLCJhZGRDbGFzcyIsIm9ic2VydmVyIiwiTXV0YXRpb25PYnNlcnZlciIsIm9ic2VydmUiLCJhdHRyaWJ1dGVzIiwiYXR0cmlidXRlRmlsdGVyIiwiY2xhc3NMaXN0IiwicmVtb3ZlIiwiZGlzY29ubmVjdCIsIm5vT3AiXSwic291cmNlUm9vdCI6ImJ1bmRsZTovLy8iLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9hZGFwdGl2ZUNhcmRzL0RPTU1hbmlwdWxhdGlvbldpdGhVbmRvL2R1cmFibGVBZGRDbGFzc1dpdGhVbmRvLnRzIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGFkZENsYXNzIH0gZnJvbSAnLi9wcml2YXRlL2FkZENsYXNzJztcbmltcG9ydCBub09wIGZyb20gJy4vcHJpdmF0ZS9ub09wJztcblxuaW1wb3J0IHR5cGUgeyBVbmRvRnVuY3Rpb24gfSBmcm9tICcuL3R5cGVzL1VuZG9GdW5jdGlvbic7XG5cbi8qKlxuICogQWRkcyBhIGNsYXNzIHRvIHRoZSBgSFRNTEVsZW1lbnRgIGFuZCByZS1hZGQgb24gbXV0YXRpb25zLlxuICpcbiAqIEByZXR1cm5zIHtmdW5jdGlvbn0gQSBmdW5jdGlvbiwgd2hlbiBjYWxsZWQsIHdpbGwgcmVzdG9yZSB0byBwcmV2aW91cyBzdGF0ZS5cbiAqL1xuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gZHVyYWJsZUFkZENsYXNzV2l0aFVuZG8oZWxlbWVudDogSFRNTEVsZW1lbnQgfCB1bmRlZmluZWQsIGNsYXNzTmFtZTogc3RyaW5nKTogVW5kb0Z1bmN0aW9uIHtcbiAgaWYgKGVsZW1lbnQpIHtcbiAgICBhZGRDbGFzcyhlbGVtZW50LCBjbGFzc05hbWUpO1xuXG4gICAgLy8gQWZ0ZXIgd2UgYWRkIHRoZSBjbGFzcywga2VlcCBvYnNlcnZpbmcgdGhlIGVsZW1lbnQgdG8gbWFrZSBzdXJlIHRoZSBjbGFzcyBpcyBub3QgcmVtb3ZlZC5cbiAgICBjb25zdCBvYnNlcnZlciA9IG5ldyBNdXRhdGlvbk9ic2VydmVyKCgpID0+IGFkZENsYXNzKGVsZW1lbnQsIGNsYXNzTmFtZSkpO1xuXG4gICAgb2JzZXJ2ZXIub2JzZXJ2ZShlbGVtZW50LCB7IGF0dHJpYnV0ZXM6IHRydWUsIGF0dHJpYnV0ZUZpbHRlcjogWydjbGFzcyddIH0pO1xuXG4gICAgcmV0dXJuICgpID0+IHtcbiAgICAgIGVsZW1lbnQuY2xhc3NMaXN0LnJlbW92ZShjbGFzc05hbWUpO1xuXG4gICAgICBvYnNlcnZlci5kaXNjb25uZWN0KCk7XG4gICAgfTtcbiAgfVxuXG4gIHJldHVybiBub09wO1xufVxuIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7QUFBQTs7QUFDQTs7QUFJQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ2UsU0FBU0EsdUJBQVQsQ0FBaUNDLE9BQWpDLEVBQW1FQyxTQUFuRSxFQUFvRztFQUNqSCxJQUFJRCxPQUFKLEVBQWE7SUFDWCxJQUFBRSxrQkFBQSxFQUFTRixPQUFULEVBQWtCQyxTQUFsQixFQURXLENBR1g7O0lBQ0EsSUFBTUUsUUFBUSxHQUFHLElBQUlDLGdCQUFKLENBQXFCO01BQUEsT0FBTSxJQUFBRixrQkFBQSxFQUFTRixPQUFULEVBQWtCQyxTQUFsQixDQUFOO0lBQUEsQ0FBckIsQ0FBakI7SUFFQUUsUUFBUSxDQUFDRSxPQUFULENBQWlCTCxPQUFqQixFQUEwQjtNQUFFTSxVQUFVLEVBQUUsSUFBZDtNQUFvQkMsZUFBZSxFQUFFLENBQUMsT0FBRDtJQUFyQyxDQUExQjtJQUVBLE9BQU8sWUFBTTtNQUNYUCxPQUFPLENBQUNRLFNBQVIsQ0FBa0JDLE1BQWxCLENBQXlCUixTQUF6QjtNQUVBRSxRQUFRLENBQUNPLFVBQVQ7SUFDRCxDQUpEO0VBS0Q7O0VBRUQsT0FBT0MsYUFBUDtBQUNEIn0=

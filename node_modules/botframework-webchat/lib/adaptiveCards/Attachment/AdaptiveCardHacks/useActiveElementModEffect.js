@@ -1,0 +1,44 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = useActiveElementModEffect;
+
+var _react = require("react");
+
+var _findDOMNodeOwner = _interopRequireDefault(require("./private/findDOMNodeOwner"));
+
+var _useAdaptiveCardModEffect = _interopRequireDefault(require("./private/useAdaptiveCardModEffect"));
+
+var _usePrevious = _interopRequireDefault(require("./private/usePrevious"));
+
+/**
+ * Re-rendering: Last focused element must be persisted during render cycle.
+ */
+function useActiveElementModEffect(adaptiveCard) {
+  var activeCardObjectRef = (0, _react.useRef)();
+  var prevAdaptiveCard = (0, _usePrevious.default)(adaptiveCard);
+
+  if (prevAdaptiveCard !== adaptiveCard) {
+    activeCardObjectRef.current = undefined;
+  }
+
+  var modder = (0, _react.useMemo)(function () {
+    return function (adaptiveCard) {
+      var _activeCardObjectRef$, _activeCardObjectRef$2, _activeCardObjectRef$3;
+
+      // When apply, if we have saved the `CardObject` that was focused, restore its focused to the newly rendered element.
+      (_activeCardObjectRef$ = activeCardObjectRef.current) === null || _activeCardObjectRef$ === void 0 ? void 0 : (_activeCardObjectRef$2 = _activeCardObjectRef$.renderedElement) === null || _activeCardObjectRef$2 === void 0 ? void 0 : (_activeCardObjectRef$3 = _activeCardObjectRef$2.focus) === null || _activeCardObjectRef$3 === void 0 ? void 0 : _activeCardObjectRef$3.call(_activeCardObjectRef$2); // When undo, we are preparing for the next rendering.
+      // So, find and save the `CardObject` that is currently focused.
+
+      return function () {
+        activeCardObjectRef.current = (0, _findDOMNodeOwner.default)(adaptiveCard, document.activeElement);
+      };
+    };
+  }, [activeCardObjectRef]);
+  return (0, _useAdaptiveCardModEffect.default)(modder, adaptiveCard);
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJ1c2VBY3RpdmVFbGVtZW50TW9kRWZmZWN0IiwiYWRhcHRpdmVDYXJkIiwiYWN0aXZlQ2FyZE9iamVjdFJlZiIsInVzZVJlZiIsInByZXZBZGFwdGl2ZUNhcmQiLCJ1c2VQcmV2aW91cyIsImN1cnJlbnQiLCJ1bmRlZmluZWQiLCJtb2RkZXIiLCJ1c2VNZW1vIiwicmVuZGVyZWRFbGVtZW50IiwiZm9jdXMiLCJmaW5kRE9NTm9kZU93bmVyIiwiZG9jdW1lbnQiLCJhY3RpdmVFbGVtZW50IiwidXNlQWRhcHRpdmVDYXJkTW9kRWZmZWN0Il0sInNvdXJjZVJvb3QiOiJidW5kbGU6Ly8vIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi9zcmMvYWRhcHRpdmVDYXJkcy9BdHRhY2htZW50L0FkYXB0aXZlQ2FyZEhhY2tzL3VzZUFjdGl2ZUVsZW1lbnRNb2RFZmZlY3QudHMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgdXNlTWVtbywgdXNlUmVmIH0gZnJvbSAncmVhY3QnO1xuXG5pbXBvcnQgZmluZERPTU5vZGVPd25lciBmcm9tICcuL3ByaXZhdGUvZmluZERPTU5vZGVPd25lcic7XG5pbXBvcnQgdXNlQWRhcHRpdmVDYXJkTW9kRWZmZWN0IGZyb20gJy4vcHJpdmF0ZS91c2VBZGFwdGl2ZUNhcmRNb2RFZmZlY3QnO1xuaW1wb3J0IHVzZVByZXZpb3VzIGZyb20gJy4vcHJpdmF0ZS91c2VQcmV2aW91cyc7XG5cbmltcG9ydCB0eXBlIHsgQWRhcHRpdmVDYXJkLCBDYXJkT2JqZWN0IH0gZnJvbSAnYWRhcHRpdmVjYXJkcyc7XG5cbi8qKlxuICogUmUtcmVuZGVyaW5nOiBMYXN0IGZvY3VzZWQgZWxlbWVudCBtdXN0IGJlIHBlcnNpc3RlZCBkdXJpbmcgcmVuZGVyIGN5Y2xlLlxuICovXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbiB1c2VBY3RpdmVFbGVtZW50TW9kRWZmZWN0KGFkYXB0aXZlQ2FyZDogQWRhcHRpdmVDYXJkKSB7XG4gIGNvbnN0IGFjdGl2ZUNhcmRPYmplY3RSZWYgPSB1c2VSZWY8Q2FyZE9iamVjdCB8IHVuZGVmaW5lZD4oKTtcbiAgY29uc3QgcHJldkFkYXB0aXZlQ2FyZCA9IHVzZVByZXZpb3VzKGFkYXB0aXZlQ2FyZCk7XG5cbiAgaWYgKHByZXZBZGFwdGl2ZUNhcmQgIT09IGFkYXB0aXZlQ2FyZCkge1xuICAgIGFjdGl2ZUNhcmRPYmplY3RSZWYuY3VycmVudCA9IHVuZGVmaW5lZDtcbiAgfVxuXG4gIGNvbnN0IG1vZGRlciA9IHVzZU1lbW8oXG4gICAgKCkgPT4gKGFkYXB0aXZlQ2FyZDogQWRhcHRpdmVDYXJkKSA9PiB7XG4gICAgICAvLyBXaGVuIGFwcGx5LCBpZiB3ZSBoYXZlIHNhdmVkIHRoZSBgQ2FyZE9iamVjdGAgdGhhdCB3YXMgZm9jdXNlZCwgcmVzdG9yZSBpdHMgZm9jdXNlZCB0byB0aGUgbmV3bHkgcmVuZGVyZWQgZWxlbWVudC5cbiAgICAgIGFjdGl2ZUNhcmRPYmplY3RSZWYuY3VycmVudD8ucmVuZGVyZWRFbGVtZW50Py5mb2N1cz8uKCk7XG5cbiAgICAgIC8vIFdoZW4gdW5kbywgd2UgYXJlIHByZXBhcmluZyBmb3IgdGhlIG5leHQgcmVuZGVyaW5nLlxuICAgICAgLy8gU28sIGZpbmQgYW5kIHNhdmUgdGhlIGBDYXJkT2JqZWN0YCB0aGF0IGlzIGN1cnJlbnRseSBmb2N1c2VkLlxuICAgICAgcmV0dXJuICgpID0+IHtcbiAgICAgICAgYWN0aXZlQ2FyZE9iamVjdFJlZi5jdXJyZW50ID0gZmluZERPTU5vZGVPd25lcihhZGFwdGl2ZUNhcmQsIGRvY3VtZW50LmFjdGl2ZUVsZW1lbnQgYXMgSFRNTEVsZW1lbnQpO1xuICAgICAgfTtcbiAgICB9LFxuICAgIFthY3RpdmVDYXJkT2JqZWN0UmVmXVxuICApO1xuXG4gIHJldHVybiB1c2VBZGFwdGl2ZUNhcmRNb2RFZmZlY3QobW9kZGVyLCBhZGFwdGl2ZUNhcmQpO1xufVxuIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7QUFBQTs7QUFFQTs7QUFDQTs7QUFDQTs7QUFJQTtBQUNBO0FBQ0E7QUFDZSxTQUFTQSx5QkFBVCxDQUFtQ0MsWUFBbkMsRUFBK0Q7RUFDNUUsSUFBTUMsbUJBQW1CLEdBQUcsSUFBQUMsYUFBQSxHQUE1QjtFQUNBLElBQU1DLGdCQUFnQixHQUFHLElBQUFDLG9CQUFBLEVBQVlKLFlBQVosQ0FBekI7O0VBRUEsSUFBSUcsZ0JBQWdCLEtBQUtILFlBQXpCLEVBQXVDO0lBQ3JDQyxtQkFBbUIsQ0FBQ0ksT0FBcEIsR0FBOEJDLFNBQTlCO0VBQ0Q7O0VBRUQsSUFBTUMsTUFBTSxHQUFHLElBQUFDLGNBQUEsRUFDYjtJQUFBLE9BQU0sVUFBQ1IsWUFBRCxFQUFnQztNQUFBOztNQUNwQztNQUNBLHlCQUFBQyxtQkFBbUIsQ0FBQ0ksT0FBcEIsMEdBQTZCSSxlQUE3Qiw0R0FBOENDLEtBQTlDLCtHQUZvQyxDQUlwQztNQUNBOztNQUNBLE9BQU8sWUFBTTtRQUNYVCxtQkFBbUIsQ0FBQ0ksT0FBcEIsR0FBOEIsSUFBQU0seUJBQUEsRUFBaUJYLFlBQWpCLEVBQStCWSxRQUFRLENBQUNDLGFBQXhDLENBQTlCO01BQ0QsQ0FGRDtJQUdELENBVEQ7RUFBQSxDQURhLEVBV2IsQ0FBQ1osbUJBQUQsQ0FYYSxDQUFmO0VBY0EsT0FBTyxJQUFBYSxpQ0FBQSxFQUF5QlAsTUFBekIsRUFBaUNQLFlBQWpDLENBQVA7QUFDRCJ9

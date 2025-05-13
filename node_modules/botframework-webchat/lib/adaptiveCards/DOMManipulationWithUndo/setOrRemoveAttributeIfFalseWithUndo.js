@@ -1,0 +1,41 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = setOrRemoveAttributeIfFalseWithUndo;
+
+var _getAttributeOrFalse = _interopRequireDefault(require("./private/getAttributeOrFalse"));
+
+var _noOp = _interopRequireDefault(require("./private/noOp"));
+
+var _setOrRemoveAttributeIfFalse = _interopRequireDefault(require("./private/setOrRemoveAttributeIfFalse"));
+
+/**
+ * Sets or removes an attribute from an element with an undo function.
+ *
+ * @param {HTMLElement} element - The element to set or remove attribute from.
+ * @param {string} qualifiedName - The name of the attribute.
+ * @param {false | string} value - The value of the attribute. When passing `false`, remove the attribute.
+ *
+ * @returns {() => void} An undo function, when called, will undo all manipulations by restoring values recorded at the time of the function call.
+ */
+function setOrRemoveAttributeIfFalseWithUndo(element, qualifiedName, value) {
+  if (!element) {
+    return _noOp.default;
+  }
+
+  var prevValue = (0, _getAttributeOrFalse.default)(element, qualifiedName);
+
+  if (prevValue === value) {
+    return _noOp.default;
+  }
+
+  (0, _setOrRemoveAttributeIfFalse.default)(element, qualifiedName, value);
+  return function () {
+    return (0, _setOrRemoveAttributeIfFalse.default)(element, qualifiedName, prevValue);
+  };
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJzZXRPclJlbW92ZUF0dHJpYnV0ZUlmRmFsc2VXaXRoVW5kbyIsImVsZW1lbnQiLCJxdWFsaWZpZWROYW1lIiwidmFsdWUiLCJub09wIiwicHJldlZhbHVlIiwiZ2V0QXR0cmlidXRlT3JGYWxzZSIsInNldE9yUmVtb3ZlQXR0cmlidXRlSWZGYWxzZSJdLCJzb3VyY2VSb290IjoiYnVuZGxlOi8vLyIsInNvdXJjZXMiOlsiLi4vLi4vLi4vc3JjL2FkYXB0aXZlQ2FyZHMvRE9NTWFuaXB1bGF0aW9uV2l0aFVuZG8vc2V0T3JSZW1vdmVBdHRyaWJ1dGVJZkZhbHNlV2l0aFVuZG8udHMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IGdldEF0dHJpYnV0ZU9yRmFsc2UgZnJvbSAnLi9wcml2YXRlL2dldEF0dHJpYnV0ZU9yRmFsc2UnO1xuaW1wb3J0IG5vT3AgZnJvbSAnLi9wcml2YXRlL25vT3AnO1xuaW1wb3J0IHNldE9yUmVtb3ZlQXR0cmlidXRlSWZGYWxzZSBmcm9tICcuL3ByaXZhdGUvc2V0T3JSZW1vdmVBdHRyaWJ1dGVJZkZhbHNlJztcblxuaW1wb3J0IHR5cGUgeyBVbmRvRnVuY3Rpb24gfSBmcm9tICcuL3R5cGVzL1VuZG9GdW5jdGlvbic7XG5cbi8qKlxuICogU2V0cyBvciByZW1vdmVzIGFuIGF0dHJpYnV0ZSBmcm9tIGFuIGVsZW1lbnQgd2l0aCBhbiB1bmRvIGZ1bmN0aW9uLlxuICpcbiAqIEBwYXJhbSB7SFRNTEVsZW1lbnR9IGVsZW1lbnQgLSBUaGUgZWxlbWVudCB0byBzZXQgb3IgcmVtb3ZlIGF0dHJpYnV0ZSBmcm9tLlxuICogQHBhcmFtIHtzdHJpbmd9IHF1YWxpZmllZE5hbWUgLSBUaGUgbmFtZSBvZiB0aGUgYXR0cmlidXRlLlxuICogQHBhcmFtIHtmYWxzZSB8IHN0cmluZ30gdmFsdWUgLSBUaGUgdmFsdWUgb2YgdGhlIGF0dHJpYnV0ZS4gV2hlbiBwYXNzaW5nIGBmYWxzZWAsIHJlbW92ZSB0aGUgYXR0cmlidXRlLlxuICpcbiAqIEByZXR1cm5zIHsoKSA9PiB2b2lkfSBBbiB1bmRvIGZ1bmN0aW9uLCB3aGVuIGNhbGxlZCwgd2lsbCB1bmRvIGFsbCBtYW5pcHVsYXRpb25zIGJ5IHJlc3RvcmluZyB2YWx1ZXMgcmVjb3JkZWQgYXQgdGhlIHRpbWUgb2YgdGhlIGZ1bmN0aW9uIGNhbGwuXG4gKi9cbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIHNldE9yUmVtb3ZlQXR0cmlidXRlSWZGYWxzZVdpdGhVbmRvKFxuICBlbGVtZW50OiBIVE1MRWxlbWVudCB8IHVuZGVmaW5lZCxcbiAgcXVhbGlmaWVkTmFtZTogc3RyaW5nLFxuICB2YWx1ZTogZmFsc2UgfCBzdHJpbmdcbik6IFVuZG9GdW5jdGlvbiB7XG4gIGlmICghZWxlbWVudCkge1xuICAgIHJldHVybiBub09wO1xuICB9XG5cbiAgY29uc3QgcHJldlZhbHVlID0gZ2V0QXR0cmlidXRlT3JGYWxzZShlbGVtZW50LCBxdWFsaWZpZWROYW1lKTtcblxuICBpZiAocHJldlZhbHVlID09PSB2YWx1ZSkge1xuICAgIHJldHVybiBub09wO1xuICB9XG5cbiAgc2V0T3JSZW1vdmVBdHRyaWJ1dGVJZkZhbHNlKGVsZW1lbnQsIHF1YWxpZmllZE5hbWUsIHZhbHVlKTtcblxuICByZXR1cm4gKCkgPT4gc2V0T3JSZW1vdmVBdHRyaWJ1dGVJZkZhbHNlKGVsZW1lbnQsIHF1YWxpZmllZE5hbWUsIHByZXZWYWx1ZSk7XG59XG4iXSwibWFwcGluZ3MiOiI7Ozs7Ozs7OztBQUFBOztBQUNBOztBQUNBOztBQUlBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNlLFNBQVNBLG1DQUFULENBQ2JDLE9BRGEsRUFFYkMsYUFGYSxFQUdiQyxLQUhhLEVBSUM7RUFDZCxJQUFJLENBQUNGLE9BQUwsRUFBYztJQUNaLE9BQU9HLGFBQVA7RUFDRDs7RUFFRCxJQUFNQyxTQUFTLEdBQUcsSUFBQUMsNEJBQUEsRUFBb0JMLE9BQXBCLEVBQTZCQyxhQUE3QixDQUFsQjs7RUFFQSxJQUFJRyxTQUFTLEtBQUtGLEtBQWxCLEVBQXlCO0lBQ3ZCLE9BQU9DLGFBQVA7RUFDRDs7RUFFRCxJQUFBRyxvQ0FBQSxFQUE0Qk4sT0FBNUIsRUFBcUNDLGFBQXJDLEVBQW9EQyxLQUFwRDtFQUVBLE9BQU87SUFBQSxPQUFNLElBQUFJLG9DQUFBLEVBQTRCTixPQUE1QixFQUFxQ0MsYUFBckMsRUFBb0RHLFNBQXBELENBQU47RUFBQSxDQUFQO0FBQ0QifQ==

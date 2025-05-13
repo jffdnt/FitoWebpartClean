@@ -1,0 +1,25 @@
+import { Version } from '@microsoft/sp-core-library';
+import { type IPropertyPaneConfiguration } from '@microsoft/sp-property-pane';
+import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
+export interface IWpCustomCoPilotWebPartProps {
+    botName: string;
+    botURL: string;
+    clientID: string;
+    authority: string;
+    customScope: string;
+    greet: boolean;
+    userDisplayName: string;
+    webpartHeader: string;
+}
+export default class WpCustomCoPilotWebPart extends BaseClientSideWebPart<IWpCustomCoPilotWebPartProps> {
+    private _environmentMessage;
+    private _configurationService;
+    private _configuration;
+    render(): void;
+    protected onInit(): Promise<void>;
+    private _getEnvironmentMessage;
+    protected onDispose(): void;
+    protected get dataVersion(): Version;
+    protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration;
+}
+//# sourceMappingURL=WpCustomCoPilotWebPart.d.ts.map

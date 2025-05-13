@@ -1,0 +1,32 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = findDOMNodeOwner;
+
+// TODO: [P2] Remove this when Adaptive Card fixed their bug #7606.
+//            https://github.com/microsoft/AdaptiveCards/issues/7606
+//            Currently, their findDOMNodeOwner() returns bad result when passing an Action attached to the card.
+function findDOMNodeOwner(adaptiveCard, element) {
+  for (var count = adaptiveCard.getActionCount(), index = 0; index < count; index++) {
+    var action = adaptiveCard.getActionAt(index);
+
+    if (action.renderedElement === element) {
+      return action;
+    }
+
+    if (action.getJsonTypeName() === 'Action.ShowCard') {
+      var _ref = action,
+          card = _ref.card;
+      var cardObject = card && findDOMNodeOwner(card, element);
+
+      if (cardObject) {
+        return cardObject;
+      }
+    }
+  }
+
+  return adaptiveCard.findDOMNodeOwner(element);
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJmaW5kRE9NTm9kZU93bmVyIiwiYWRhcHRpdmVDYXJkIiwiZWxlbWVudCIsImNvdW50IiwiZ2V0QWN0aW9uQ291bnQiLCJpbmRleCIsImFjdGlvbiIsImdldEFjdGlvbkF0IiwicmVuZGVyZWRFbGVtZW50IiwiZ2V0SnNvblR5cGVOYW1lIiwiY2FyZCIsImNhcmRPYmplY3QiXSwic291cmNlUm9vdCI6ImJ1bmRsZTovLy8iLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL3NyYy9hZGFwdGl2ZUNhcmRzL0F0dGFjaG1lbnQvQWRhcHRpdmVDYXJkSGFja3MvcHJpdmF0ZS9maW5kRE9NTm9kZU93bmVyLnRzIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB0eXBlIHsgQWRhcHRpdmVDYXJkLCBDYXJkT2JqZWN0LCBTaG93Q2FyZEFjdGlvbiB9IGZyb20gJ2FkYXB0aXZlY2FyZHMnO1xuXG4vLyBUT0RPOiBbUDJdIFJlbW92ZSB0aGlzIHdoZW4gQWRhcHRpdmUgQ2FyZCBmaXhlZCB0aGVpciBidWcgIzc2MDYuXG4vLyAgICAgICAgICAgIGh0dHBzOi8vZ2l0aHViLmNvbS9taWNyb3NvZnQvQWRhcHRpdmVDYXJkcy9pc3N1ZXMvNzYwNlxuLy8gICAgICAgICAgICBDdXJyZW50bHksIHRoZWlyIGZpbmRET01Ob2RlT3duZXIoKSByZXR1cm5zIGJhZCByZXN1bHQgd2hlbiBwYXNzaW5nIGFuIEFjdGlvbiBhdHRhY2hlZCB0byB0aGUgY2FyZC5cbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIGZpbmRET01Ob2RlT3duZXIoYWRhcHRpdmVDYXJkOiBBZGFwdGl2ZUNhcmQsIGVsZW1lbnQ6IEhUTUxFbGVtZW50KTogQ2FyZE9iamVjdCB8IHVuZGVmaW5lZCB7XG4gIGZvciAobGV0IGNvdW50ID0gYWRhcHRpdmVDYXJkLmdldEFjdGlvbkNvdW50KCksIGluZGV4ID0gMDsgaW5kZXggPCBjb3VudDsgaW5kZXgrKykge1xuICAgIGNvbnN0IGFjdGlvbiA9IGFkYXB0aXZlQ2FyZC5nZXRBY3Rpb25BdChpbmRleCk7XG5cbiAgICBpZiAoYWN0aW9uLnJlbmRlcmVkRWxlbWVudCA9PT0gZWxlbWVudCkge1xuICAgICAgcmV0dXJuIGFjdGlvbjtcbiAgICB9XG5cbiAgICBpZiAoYWN0aW9uLmdldEpzb25UeXBlTmFtZSgpID09PSAnQWN0aW9uLlNob3dDYXJkJykge1xuICAgICAgY29uc3QgeyBjYXJkIH0gPSBhY3Rpb24gYXMgU2hvd0NhcmRBY3Rpb247XG4gICAgICBjb25zdCBjYXJkT2JqZWN0ID0gY2FyZCAmJiBmaW5kRE9NTm9kZU93bmVyKGNhcmQsIGVsZW1lbnQpO1xuXG4gICAgICBpZiAoY2FyZE9iamVjdCkge1xuICAgICAgICByZXR1cm4gY2FyZE9iamVjdDtcbiAgICAgIH1cbiAgICB9XG4gIH1cblxuICByZXR1cm4gYWRhcHRpdmVDYXJkLmZpbmRET01Ob2RlT3duZXIoZWxlbWVudCk7XG59XG4iXSwibWFwcGluZ3MiOiI7Ozs7Ozs7QUFFQTtBQUNBO0FBQ0E7QUFDZSxTQUFTQSxnQkFBVCxDQUEwQkMsWUFBMUIsRUFBc0RDLE9BQXRELEVBQW9HO0VBQ2pILEtBQUssSUFBSUMsS0FBSyxHQUFHRixZQUFZLENBQUNHLGNBQWIsRUFBWixFQUEyQ0MsS0FBSyxHQUFHLENBQXhELEVBQTJEQSxLQUFLLEdBQUdGLEtBQW5FLEVBQTBFRSxLQUFLLEVBQS9FLEVBQW1GO0lBQ2pGLElBQU1DLE1BQU0sR0FBR0wsWUFBWSxDQUFDTSxXQUFiLENBQXlCRixLQUF6QixDQUFmOztJQUVBLElBQUlDLE1BQU0sQ0FBQ0UsZUFBUCxLQUEyQk4sT0FBL0IsRUFBd0M7TUFDdEMsT0FBT0ksTUFBUDtJQUNEOztJQUVELElBQUlBLE1BQU0sQ0FBQ0csZUFBUCxPQUE2QixpQkFBakMsRUFBb0Q7TUFDbEQsV0FBaUJILE1BQWpCO01BQUEsSUFBUUksSUFBUixRQUFRQSxJQUFSO01BQ0EsSUFBTUMsVUFBVSxHQUFHRCxJQUFJLElBQUlWLGdCQUFnQixDQUFDVSxJQUFELEVBQU9SLE9BQVAsQ0FBM0M7O01BRUEsSUFBSVMsVUFBSixFQUFnQjtRQUNkLE9BQU9BLFVBQVA7TUFDRDtJQUNGO0VBQ0Y7O0VBRUQsT0FBT1YsWUFBWSxDQUFDRCxnQkFBYixDQUE4QkUsT0FBOUIsQ0FBUDtBQUNEIn0=
