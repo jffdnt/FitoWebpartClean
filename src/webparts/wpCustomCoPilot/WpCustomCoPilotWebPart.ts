@@ -3,15 +3,13 @@ import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
 import {
   type IPropertyPaneConfiguration,
-  PropertyPaneTextField
+  PropertyPaneTextField,
+  PropertyPaneToggle
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 
-import * as strings from 'WpCustomCoPilotWebPartStrings';
 import WpCustomCoPilot from './components/WpCustomCoPilot';
 import { IWpCustomCoPilotProps } from './components/IWpCustomCoPilotProps';
-import { ConfigurationService } from './ConfigService/ConfigurationService';
-
 
 export interface IWpCustomCoPilotWebPartProps {
   botName: string;
@@ -21,78 +19,39 @@ export interface IWpCustomCoPilotWebPartProps {
   customScope: string;
   greet: boolean;
   userDisplayName: string;
-  webpartHeader: string;
+  userEmail: string;
+  userFriendlyName: string;
+  welcomeMessage: string;
+  botAvatarImage: string;
+  botAvatarInitials: string;
 }
 
 export default class WpCustomCoPilotWebPart extends BaseClientSideWebPart<IWpCustomCoPilotWebPartProps> {
 
-  private _environmentMessage: string = '';
-  private _configurationService: ConfigurationService;
-  private _configuration : any;
-
   public render(): void {
-    console.log(this._environmentMessage);
     const element: React.ReactElement<IWpCustomCoPilotProps> = React.createElement(
       WpCustomCoPilot,
       {
-        botName: this._configuration.botName,
-        botURL: this._configuration.botURL,
-        clientID: this._configuration.clientID,
-        authority: this._configuration.authority,
-        customScope: this._configuration.customScope,
+        botName: this.properties.botName,
+        botURL: this.properties.botURL,
+        clientID: this.properties.clientID,
+        authority: this.properties.authority,
+        customScope: this.properties.customScope,
+        greet: this.properties.greet,
+        userDisplayName: this.context.pageContext.user.displayName,
         userEmail: this.context.pageContext.user.email,
         userFriendlyName: this.context.pageContext.user.displayName,
-        greet: this._configuration.greet,
-        userDisplayName: this.context.pageContext.user.displayName,
-        botAvatarImage: this._configuration.botAvatarImage,
-        botAvatarInitials: this._configuration.botAvatarInitials,
-        welcomeMessage: this.properties.webpartHeader ? this.properties.webpartHeader : 'Ask CoPilot a question'
+        welcomeMessage: this.properties.welcomeMessage,
+        botAvatarImage: this.properties.botAvatarImage,
+        botAvatarInitials: this.properties.botAvatarInitials
       }
     );
-
     ReactDom.render(element, this.domElement);
   }
 
   protected async onInit(): Promise<void> {
-    this._configurationService = new ConfigurationService(this.context);
-    const configuration = await this._configurationService.getConfiguration();
-    console.log(configuration);
-
-    return this._getEnvironmentMessage().then(message => {
-      this._environmentMessage = message;
-      this._configuration = configuration;
-    });
+    return Promise.resolve();
   }
-
-
-
-  private _getEnvironmentMessage(): Promise<string> {
-    if (!!this.context.sdks.microsoftTeams) { // running in Teams, office.com or Outlook
-      return this.context.sdks.microsoftTeams.teamsJs.app.getContext()
-        .then(context => {
-          let environmentMessage: string = '';
-          switch (context.app.host.name) {
-            case 'Office': // running in Office
-              environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentOffice : strings.AppOfficeEnvironment;
-              break;
-            case 'Outlook': // running in Outlook
-              environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentOutlook : strings.AppOutlookEnvironment;
-              break;
-            case 'Teams': // running in Teams
-            case 'TeamsModern':
-              environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentTeams : strings.AppTeamsTabEnvironment;
-              break;
-            default:
-              environmentMessage = strings.UnknownEnvironment;
-          }
-
-          return environmentMessage;
-        });
-    }
-
-    return Promise.resolve(this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentSharePoint : strings.AppSharePointEnvironment);
-  }
-
 
   protected onDispose(): void {
     ReactDom.unmountComponentAtNode(this.domElement);
@@ -106,15 +65,20 @@ export default class WpCustomCoPilotWebPart extends BaseClientSideWebPart<IWpCus
     return {
       pages: [
         {
-          header: { description: strings.PropertyPaneDescription },
+          header: { description: 'Configure your Copilot Web Part' },
           groups: [
             {
-              groupName: strings.BasicGroupName,
+              groupName: 'Bot Settings',
               groupFields: [
-                PropertyPaneTextField('webpartHeader', {
-                  label: 'Welcome Message',
-                  value: this.properties.webpartHeader
-                })
+                PropertyPaneTextField('botName', { label: 'Bot Name' }),
+                PropertyPaneTextField('botURL', { label: 'Bot URL' }),
+                PropertyPaneTextField('clientID', { label: 'Client ID' }),
+                PropertyPaneTextField('authority', { label: 'Authority' }),
+                PropertyPaneTextField('customScope', { label: 'Custom Scope' }),
+                PropertyPaneToggle('greet', { label: 'Greet User' }),
+                PropertyPaneTextField('welcomeMessage', { label: 'Welcome Message' }),
+                PropertyPaneTextField('botAvatarImage', { label: 'Bot Avatar Image' }),
+                PropertyPaneTextField('botAvatarInitials', { label: 'Bot Avatar Initials' })
               ]
             }
           ]

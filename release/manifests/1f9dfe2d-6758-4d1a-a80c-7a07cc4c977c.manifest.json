@@ -38,7 +38,7 @@
     "scriptResources": {
       "wp-custom-co-pilot-web-part": {
         "type": "path",
-        "path": "wp-custom-co-pilot-web-part_94d3267af5344733e0f0.js"
+        "path": "wp-custom-co-pilot-web-part_fbe08f7d8641630f38a4.js"
       },
       "react": {
         "type": "component",
@@ -64,10 +64,6 @@
         "type": "component",
         "id": "974a7777-0990-4136-8fa6-95d80114c2e0",
         "version": "1.20.0"
-      },
-      "WpCustomCoPilotWebPartStrings": {
-        "type": "path",
-        "path": "WpCustomCoPilotWebPartStrings_en-us_eb42a517954fea904e022e89eb9f35e4.js"
       },
       "@microsoft/sp-lodash-subset": {
         "type": "component",

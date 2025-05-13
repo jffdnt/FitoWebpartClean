@@ -9,15 +9,15 @@ export interface IWpCustomCoPilotWebPartProps {
     customScope: string;
     greet: boolean;
     userDisplayName: string;
-    webpartHeader: string;
+    userEmail: string;
+    userFriendlyName: string;
+    welcomeMessage: string;
+    botAvatarImage: string;
+    botAvatarInitials: string;
 }
 export default class WpCustomCoPilotWebPart extends BaseClientSideWebPart<IWpCustomCoPilotWebPartProps> {
-    private _environmentMessage;
-    private _configurationService;
-    private _configuration;
     render(): void;
     protected onInit(): Promise<void>;
-    private _getEnvironmentMessage;
     protected onDispose(): void;
     protected get dataVersion(): Version;
     protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration;
