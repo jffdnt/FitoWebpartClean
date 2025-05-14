@@ -167,6 +167,10 @@ const CoPilotCustomWP: React.FC<IWpCustomCoPilotProps> = (props) => {
             rootWidth: '100%',
             botAvatarBackgroundColor: '#fff',
             userAvatarBackgroundColor: '#fff',
+            bubbleBackground: '#EBEBED',
+            bubbleTextColor: '#000',
+            bubbleFromUserBackground: '#0057B8',
+            bubbleFromUserTextColor: '#fff',
             ...avatarOptions
         }
     
