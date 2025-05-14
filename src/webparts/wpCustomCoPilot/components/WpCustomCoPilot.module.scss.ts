@@ -1,13 +1,14 @@
 
 require("./WpCustomCoPilot.module.css");
 const styles = {
-  wpCustomCoPilot: 'wpCustomCoPilot_515ba951',
-  chatContainer: 'chatContainer_515ba951',
-  teams: 'teams_515ba951',
-  webChat: 'webChat_515ba951',
-  welcome: 'welcome_515ba951',
-  welcomeImage: 'welcomeImage_515ba951',
-  links: 'links_515ba951'
+  wpCustomCoPilot: 'wpCustomCoPilot_de2b4392',
+  chatContainer: 'chatContainer_de2b4392',
+  teams: 'teams_de2b4392',
+  header: 'header_de2b4392',
+  webChat: 'webChat_de2b4392',
+  welcome: 'welcome_de2b4392',
+  welcomeImage: 'welcomeImage_de2b4392',
+  links: 'links_de2b4392'
 };
 
 export default styles;

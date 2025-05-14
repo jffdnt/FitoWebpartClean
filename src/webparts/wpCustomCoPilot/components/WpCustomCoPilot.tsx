@@ -208,18 +208,16 @@ const CoPilotCustomWP: React.FC<IWpCustomCoPilotProps> = (props) => {
 
   return (
     <section className={`${styles.wpCustomCoPilot}`} style={{ width: props.width ? `${props.width}px` : '100%' }}>
-      <div style={{ background: '#009FDB', color: '#fff', padding: '1rem', borderRadius: '4px 4px 0 0', fontWeight: 'bold', fontSize: '1.3rem', letterSpacing: '0.5px' }}>
+      <div className={styles.header} style={{ background: '#009FDB', color: '#fff', padding: '1rem', borderRadius: '4px 4px 0 0', fontWeight: 'bold', fontSize: '1.3rem', letterSpacing: '0.5px' }}>
         FiTo AI (Powered by Ask AT&T)
       </div>
-      <div>
-        <div
-          className={styles.chatContainer}
-          id="chatContainer"
-          style={{ height: props.height ? `${props.height}px` : '400px', width: props.width ? `${props.width}px` : '100%' }}
-        >
-          <div ref={webChatRef} role="main" className={styles.webChat}></div>
-          <div ref={loadingSpinnerRef}><Spinner label="Loading..." style={{ paddingTop: "1rem", paddingBottom: "1rem" }} /></div>
-        </div>
+      <div
+        className={styles.chatContainer}
+        id="chatContainer"
+        style={{ height: props.height ? `${props.height}px` : '400px', width: props.width ? `${props.width}px` : '100%' }}
+      >
+        <div ref={webChatRef} role="main" className={styles.webChat}></div>
+        <div ref={loadingSpinnerRef}><Spinner label="Loading..." style={{ paddingTop: "1rem", paddingBottom: "1rem" }} /></div>
       </div>
     </section>
   );
