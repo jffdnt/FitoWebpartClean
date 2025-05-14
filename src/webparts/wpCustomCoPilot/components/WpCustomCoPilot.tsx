@@ -171,6 +171,7 @@ const CoPilotCustomWP: React.FC<IWpCustomCoPilotProps> = (props) => {
             bubbleTextColor: '#000',
             bubbleFromUserBackground: '#0057B8',
             bubbleFromUserTextColor: '#fff',
+            sendBoxBackground: '#F3F4F6',
             ...avatarOptions
         }
     
