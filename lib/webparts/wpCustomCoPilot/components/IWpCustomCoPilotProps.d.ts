@@ -11,5 +11,7 @@ export interface IWpCustomCoPilotProps {
     botAvatarImage: string;
     botAvatarInitials: string;
     welcomeMessage: string;
+    height?: string;
+    width?: string;
 }
 //# sourceMappingURL=IWpCustomCoPilotProps.d.ts.map

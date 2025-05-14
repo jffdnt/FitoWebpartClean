@@ -24,6 +24,8 @@ export interface IWpCustomCoPilotWebPartProps {
   welcomeMessage: string;
   botAvatarImage: string;
   botAvatarInitials: string;
+  height?: string;
+  width?: string;
 }
 
 export default class WpCustomCoPilotWebPart extends BaseClientSideWebPart<IWpCustomCoPilotWebPartProps> {
@@ -43,7 +45,9 @@ export default class WpCustomCoPilotWebPart extends BaseClientSideWebPart<IWpCus
         userFriendlyName: this.context.pageContext.user.displayName,
         welcomeMessage: this.properties.welcomeMessage,
         botAvatarImage: this.properties.botAvatarImage,
-        botAvatarInitials: this.properties.botAvatarInitials
+        botAvatarInitials: this.properties.botAvatarInitials,
+        height: this.properties.height,
+        width: this.properties.width
       }
     );
     ReactDom.render(element, this.domElement);
@@ -78,7 +82,9 @@ export default class WpCustomCoPilotWebPart extends BaseClientSideWebPart<IWpCus
                 PropertyPaneToggle('greet', { label: 'Greet User' }),
                 PropertyPaneTextField('welcomeMessage', { label: 'Welcome Message' }),
                 PropertyPaneTextField('botAvatarImage', { label: 'Bot Avatar Image' }),
-                PropertyPaneTextField('botAvatarInitials', { label: 'Bot Avatar Initials' })
+                PropertyPaneTextField('botAvatarInitials', { label: 'Bot Avatar Initials' }),
+                PropertyPaneTextField('height', { label: 'Chat Height (px)', description: 'e.g. 400' }),
+                PropertyPaneTextField('width', { label: 'Chat Width (px)', description: 'e.g. 100%' })
               ]
             }
           ]

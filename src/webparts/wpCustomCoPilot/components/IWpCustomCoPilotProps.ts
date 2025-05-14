@@ -11,4 +11,6 @@ export interface IWpCustomCoPilotProps {
   botAvatarImage: string;
   botAvatarInitials: string;
   welcomeMessage:string;
+  height?: string;
+  width?: string;
 }

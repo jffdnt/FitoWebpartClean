@@ -14,6 +14,8 @@ export interface IWpCustomCoPilotWebPartProps {
     welcomeMessage: string;
     botAvatarImage: string;
     botAvatarInitials: string;
+    height?: string;
+    width?: string;
 }
 export default class WpCustomCoPilotWebPart extends BaseClientSideWebPart<IWpCustomCoPilotWebPartProps> {
     render(): void;

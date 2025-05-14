@@ -5,6 +5,12 @@ $chat-background-color: var(--neutralLighterAlt);
 $chat-border-color: var(--neutralQuaternaryAlt);
 
 
+.wpCustomCoPilot,
+.wpCustomCoPilot > div,
+.wpCustomCoPilot .chatContainer {
+  box-sizing: border-box;
+}
+
 .wpCustomCoPilot {
   overflow: hidden;
   padding: 1em;

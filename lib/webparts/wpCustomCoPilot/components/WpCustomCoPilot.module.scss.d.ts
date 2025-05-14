@@ -1,7 +1,7 @@
 declare const styles: {
     wpCustomCoPilot: string;
-    teams: string;
     chatContainer: string;
+    teams: string;
     webChat: string;
     welcome: string;
     welcomeImage: string;
