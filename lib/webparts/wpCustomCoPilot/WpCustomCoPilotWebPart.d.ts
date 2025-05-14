@@ -20,7 +20,8 @@ export interface IWpCustomCoPilotWebPartProps {
     headerBgColor?: string;
     headerTextColor?: string;
     headerFontSize?: string;
-    chatContainerHeight?: string;
+    chatContainerPaddingTop?: string;
+    headerPaddingLeft?: string;
 }
 export default class WpCustomCoPilotWebPart extends BaseClientSideWebPart<IWpCustomCoPilotWebPartProps> {
     render(): void;

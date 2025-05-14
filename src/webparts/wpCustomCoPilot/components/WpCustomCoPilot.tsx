@@ -214,6 +214,7 @@ const CoPilotCustomWP: React.FC<IWpCustomCoPilotProps> = (props) => {
           background: props.headerBgColor || '#009FDB',
           color: props.headerTextColor || '#fff',
           padding: '1rem',
+          paddingLeft: props.headerPaddingLeft ? `${props.headerPaddingLeft}px` : '0',
           borderRadius: '4px 4px 0 0',
           fontWeight: 'bold',
           fontSize: props.headerFontSize ? `${props.headerFontSize}px` : '1.3rem',
@@ -229,7 +230,8 @@ const CoPilotCustomWP: React.FC<IWpCustomCoPilotProps> = (props) => {
         className={styles.chatContainer}
         id="chatContainer"
         style={{
-          height: props.chatContainerHeight ? `${props.chatContainerHeight}px` : (props.height ? `${props.height}px` : '400px'),
+          paddingTop: props.chatContainerPaddingTop ? `${props.chatContainerPaddingTop}px` : '0',
+          height: props.height ? `${props.height}px` : '400px',
           width: props.width ? `${props.width}px` : '100%'
         }}
       >

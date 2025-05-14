@@ -17,5 +17,6 @@ export interface IWpCustomCoPilotProps {
   headerBgColor?: string;
   headerTextColor?: string;
   headerFontSize?: string;
-  chatContainerHeight?: string;
+  chatContainerPaddingTop?: string;
+  headerPaddingLeft?: string;
 }

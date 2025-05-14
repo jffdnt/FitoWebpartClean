@@ -30,7 +30,8 @@ export interface IWpCustomCoPilotWebPartProps {
   headerBgColor?: string;
   headerTextColor?: string;
   headerFontSize?: string;
-  chatContainerHeight?: string;
+  chatContainerPaddingTop?: string;
+  headerPaddingLeft?: string;
 }
 
 export default class WpCustomCoPilotWebPart extends BaseClientSideWebPart<IWpCustomCoPilotWebPartProps> {
@@ -57,7 +58,8 @@ export default class WpCustomCoPilotWebPart extends BaseClientSideWebPart<IWpCus
         headerBgColor: this.properties.headerBgColor,
         headerTextColor: this.properties.headerTextColor,
         headerFontSize: this.properties.headerFontSize,
-        chatContainerHeight: this.properties.chatContainerHeight
+        chatContainerPaddingTop: this.properties.chatContainerPaddingTop,
+        headerPaddingLeft: this.properties.headerPaddingLeft
       }
     );
     ReactDom.render(element, this.domElement);
@@ -99,7 +101,8 @@ export default class WpCustomCoPilotWebPart extends BaseClientSideWebPart<IWpCus
                 PropertyPaneTextField('headerBgColor', { label: 'Header Background Color', description: 'e.g. #009FDB' }),
                 PropertyPaneTextField('headerTextColor', { label: 'Header Text Color', description: 'e.g. #fff' }),
                 PropertyPaneTextField('headerFontSize', { label: 'Header Font Size (px)', description: 'e.g. 20' }),
-                PropertyPaneTextField('chatContainerHeight', { label: 'Chat Container Height (px)', description: 'e.g. 400' })
+                PropertyPaneTextField('chatContainerPaddingTop', { label: 'Chat Padding Top (px)', description: 'e.g. 16' }),
+                PropertyPaneTextField('headerPaddingLeft', { label: 'Header Padding Left (px)', description: 'e.g. 24' })
               ]
             }
           ]
