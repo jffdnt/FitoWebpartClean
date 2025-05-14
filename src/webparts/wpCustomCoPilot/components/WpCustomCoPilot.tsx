@@ -208,13 +208,30 @@ const CoPilotCustomWP: React.FC<IWpCustomCoPilotProps> = (props) => {
 
   return (
     <section className={`${styles.wpCustomCoPilot}`} style={{ width: props.width ? `${props.width}px` : '100%' }}>
-      <div className={styles.header} style={{ background: '#009FDB', color: '#fff', padding: '1rem', borderRadius: '4px 4px 0 0', fontWeight: 'bold', fontSize: '1.3rem', letterSpacing: '0.5px' }}>
+      <div
+        className={styles.header}
+        style={{
+          background: props.headerBgColor || '#009FDB',
+          color: props.headerTextColor || '#fff',
+          padding: '1rem',
+          borderRadius: '4px 4px 0 0',
+          fontWeight: 'bold',
+          fontSize: props.headerFontSize ? `${props.headerFontSize}px` : '1.3rem',
+          letterSpacing: '0.5px',
+          height: props.headerHeight ? `${props.headerHeight}px` : undefined,
+          minHeight: props.headerHeight ? `${props.headerHeight}px` : undefined,
+          maxHeight: props.headerHeight ? `${props.headerHeight}px` : undefined
+        }}
+      >
         FiTo AI (Powered by Ask AT&T)
       </div>
       <div
         className={styles.chatContainer}
         id="chatContainer"
-        style={{ height: props.height ? `${props.height}px` : '400px', width: props.width ? `${props.width}px` : '100%' }}
+        style={{
+          height: props.chatContainerHeight ? `${props.chatContainerHeight}px` : (props.height ? `${props.height}px` : '400px'),
+          width: props.width ? `${props.width}px` : '100%'
+        }}
       >
         <div ref={webChatRef} role="main" className={styles.webChat}></div>
         <div ref={loadingSpinnerRef}><Spinner label="Loading..." style={{ paddingTop: "1rem", paddingBottom: "1rem" }} /></div>

@@ -26,6 +26,11 @@ export interface IWpCustomCoPilotWebPartProps {
   botAvatarInitials: string;
   height?: string;
   width?: string;
+  headerHeight?: string;
+  headerBgColor?: string;
+  headerTextColor?: string;
+  headerFontSize?: string;
+  chatContainerHeight?: string;
 }
 
 export default class WpCustomCoPilotWebPart extends BaseClientSideWebPart<IWpCustomCoPilotWebPartProps> {
@@ -47,7 +52,12 @@ export default class WpCustomCoPilotWebPart extends BaseClientSideWebPart<IWpCus
         botAvatarImage: this.properties.botAvatarImage,
         botAvatarInitials: this.properties.botAvatarInitials,
         height: this.properties.height,
-        width: this.properties.width
+        width: this.properties.width,
+        headerHeight: this.properties.headerHeight,
+        headerBgColor: this.properties.headerBgColor,
+        headerTextColor: this.properties.headerTextColor,
+        headerFontSize: this.properties.headerFontSize,
+        chatContainerHeight: this.properties.chatContainerHeight
       }
     );
     ReactDom.render(element, this.domElement);
@@ -84,7 +94,12 @@ export default class WpCustomCoPilotWebPart extends BaseClientSideWebPart<IWpCus
                 PropertyPaneTextField('botAvatarImage', { label: 'Bot Avatar Image' }),
                 PropertyPaneTextField('botAvatarInitials', { label: 'Bot Avatar Initials' }),
                 PropertyPaneTextField('height', { label: 'Chat Height (px)', description: 'e.g. 400' }),
-                PropertyPaneTextField('width', { label: 'Chat Width (px)', description: 'e.g. 100%' })
+                PropertyPaneTextField('width', { label: 'Chat Width (px)', description: 'e.g. 100%' }),
+                PropertyPaneTextField('headerHeight', { label: 'Header Height (px)', description: 'e.g. 60' }),
+                PropertyPaneTextField('headerBgColor', { label: 'Header Background Color', description: 'e.g. #009FDB' }),
+                PropertyPaneTextField('headerTextColor', { label: 'Header Text Color', description: 'e.g. #fff' }),
+                PropertyPaneTextField('headerFontSize', { label: 'Header Font Size (px)', description: 'e.g. 20' }),
+                PropertyPaneTextField('chatContainerHeight', { label: 'Chat Container Height (px)', description: 'e.g. 400' })
               ]
             }
           ]

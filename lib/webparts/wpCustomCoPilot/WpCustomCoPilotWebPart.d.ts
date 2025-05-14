@@ -16,6 +16,11 @@ export interface IWpCustomCoPilotWebPartProps {
     botAvatarInitials: string;
     height?: string;
     width?: string;
+    headerHeight?: string;
+    headerBgColor?: string;
+    headerTextColor?: string;
+    headerFontSize?: string;
+    chatContainerHeight?: string;
 }
 export default class WpCustomCoPilotWebPart extends BaseClientSideWebPart<IWpCustomCoPilotWebPartProps> {
     render(): void;

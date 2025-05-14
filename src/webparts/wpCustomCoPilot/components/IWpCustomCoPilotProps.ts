@@ -13,4 +13,9 @@ export interface IWpCustomCoPilotProps {
   welcomeMessage:string;
   height?: string;
   width?: string;
+  headerHeight?: string;
+  headerBgColor?: string;
+  headerTextColor?: string;
+  headerFontSize?: string;
+  chatContainerHeight?: string;
 }
